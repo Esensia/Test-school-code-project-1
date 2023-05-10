@@ -1,0 +1,19 @@
+using UnityEngine;
+using System.Collections;
+
+public class GameController : MonoBehaviour {
+
+    public GameObject player;
+    public float speed = 10.0f;
+
+    void Start () {
+        player = GameObject.FindWithTag("Player");
+    }
+
+    void Update () {
+        float moveHorizontal = Input.GetAxis ("Horizontal");
+        float moveVertical = Input.GetAxis ("Vertical");
+        Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
+        player.GetComponent<Rigidbody>().AddForce (movement * speed * Time.deltaTime);
+    }
+}
